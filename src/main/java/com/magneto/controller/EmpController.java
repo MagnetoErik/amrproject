@@ -70,4 +70,25 @@ public class EmpController {
         model.addAttribute("emp",emp);
         return "pages/admin/admin_edit";
     }
+
+    @RequestMapping("/toAdd")
+    public String toAdd(Model model){
+        int maxId = empService.toAdd();
+        model.addAttribute("maxId",maxId);
+        return "pages/admin/admin_add";
+    }
+
+    @RequestMapping("/doAdd")
+    public String doAdd(Emp emp,Model model){
+        int result = empService.doAdd(emp);
+        if(result>0){
+            return "pages/admin/admin_list";
+        }
+        else{
+            model.addAttribute("maxId",emp.getEid());
+            model.addAttribute("emp1",emp);
+            return "pages/admin/admin_add";
+        }
+
+    }
 }

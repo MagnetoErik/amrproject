@@ -7,7 +7,6 @@
 			+ path + "/";
 	Emp emp =(Emp) session.getAttribute("emp");
 	String name = emp.getName();
-	System.out.println(emp);
 %>
 <aside class="main-sidebar">
 	<!-- sidebar: style can be found in sidebar.less -->
@@ -33,7 +32,7 @@
 				<ul class="treeview-menu">
 					<li><a href="pages/admin/admin_list.jsp"><i class="fa fa-circle-o"></i>
 							管理员列表</a></li>
-					<li><a href="pages/admin/admin_add.jsp"><i class="fa fa-circle-o"></i>
+					<li><a href="${pageContext.request.contextPath}/emp/toAdd.action"><i class="fa fa-circle-o"></i>
 							增加管理员</a></li>
 				</ul></li>
 			<li class="treeview"><a href="<%=basePath%>pages/index.jsp"> <i class="fa  fa-folder-open"></i>

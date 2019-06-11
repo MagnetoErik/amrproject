@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	String addUrl = basePath + "" ;
+	String addUrl = basePath + "emp/doAdd.action" ;
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -37,7 +37,7 @@
 										<label class="col-md-3 control-label" for="eid">雇员编号：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="eid" name="eid" class="form-control"
+											<input type="text" readonly="readonly" value="${maxId}" id="eid" name="eid" class="form-control"
 												placeholder="请输入雇员编号">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -48,7 +48,7 @@
 										<label class="col-md-3 control-label" for="name">雇员姓名：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="name" name="name" class="form-control"
+											<input type="text" id="name" value="${emp1.name}" name="name" class="form-control"
 												placeholder="请输入雇员姓名">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -59,7 +59,7 @@
 										<label class="col-md-3 control-label" for="password">登录密码：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="password" id="password" name="password" class="form-control"
+											<input type="password" id="password" value="${emp1.password}" name="password" class="form-control"
 												placeholder="请输入登录密码">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -70,7 +70,7 @@
 										<label class="col-md-3 control-label" for="phone">联系电话：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="phone" name="phone" class="form-control"
+											<input type="text" id="phone" name="phone" value="${emp1.phone}" class="form-control"
 												placeholder="请输入联系电话">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -80,7 +80,7 @@
 										<!-- 定义表单提示文字 -->
 										<label class="col-md-3 control-label" for="level.lid">员工级别：</label>
 										<div class="col-md-5">
-											<select id="level.lid" name="level.lid" class="form-control">
+											<select id="lid" name="lid" class="form-control">
 												<option value="1">实习生</option>
 												<option value="2" selected>普通员工</option>
 												<option value="3">部门主管</option>
@@ -98,7 +98,7 @@
 										<label class="col-md-3 control-label" for="salary">基本工资：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="salary" name="salary" class="form-control"
+											<input type="text" id="salary" name="salary" value="${emp1.salary}" class="form-control"
 												placeholder="请输入基本工资">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->

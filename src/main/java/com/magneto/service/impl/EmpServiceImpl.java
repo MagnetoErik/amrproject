@@ -38,4 +38,17 @@ public class EmpServiceImpl implements EmpService {
         emp.setPassword(MD5Password);
         return empMapper.doEdit(emp);
     }
+
+    @Override
+    public int toAdd() {
+        return empMapper.toAdd()+1;
+    }
+
+    @Override
+    public int doAdd(Emp emp) {
+        String MD5Password = Md5Encrypt.MD5(emp.getPassword());
+        emp.setPassword(MD5Password);
+        System.out.println(emp.getEid());
+        return empMapper.doAdd(emp);
+    }
 }

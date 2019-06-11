@@ -34,4 +34,18 @@ public interface EmpService {
      */
     int doEdit(Emp emp);
 
+    /**
+     * 查询主键，避免主键id重复
+     * @return 返回当前主键中的最大值
+     */
+    int toAdd();
+
+
+    /**
+     * 添加雇员信息
+     * @param emp 雇员信息
+     * @return 受影响的行数
+     */
+    int doAdd(Emp emp);
+
 }
