@@ -15,11 +15,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/vue/Vue.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/vue/axios.js"></script>
-    <script type="text/javascript">
-            function toEdit(id){
-                console.log(id);
-            }
-    </script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper" id="content">
@@ -53,8 +49,7 @@
                                 <td>{{emp.sex}}</td>
                                 <td>{{emp.salary}}</td>
                                 <%--<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>--%>
-                                <td><a class="btn btn-warning btn-xs" href="javascript:void(0)"
-                                       onclick="toEdit(eid)">编辑</a></td>
+                                <td><el-button class="btn btn-warning btn-xs" @click="toEdit(emp.eid)">编辑</el-button></td>
                             </tr>
 
                         </table>
@@ -79,6 +74,11 @@
         el: '#content',
         data: {
             empList: []
+        },
+        methods:{
+            toEdit:function (id) {
+                location.href="${pageContext.request.contextPath}/emp/toEdit.action?id="+id;
+            }
         },
         created() {
             $.ajax({

@@ -18,4 +18,20 @@ public interface EmpService {
      * @return  返回雇员信息列表
      */
     List<Emp> selectAll();
+
+
+    /**
+     * 编辑用户前跳转页面并显示信息
+     * @param id 所要编辑的雇员id
+     * @return 返回雇员信息
+     */
+    Emp toEdit(int id);
+
+    /**
+     * 编辑雇员信息
+     * @param emp 雇员信息
+     * @return 返回受影响的行数
+     */
+    int doEdit(Emp emp);
+
 }

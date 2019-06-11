@@ -7,7 +7,6 @@ import com.magneto.utils.Md5Encrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.ServiceMode;
 import java.util.List;
 
 @Service("/empService")
@@ -26,5 +25,17 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public List<Emp> selectAll(){
         return empMapper.selectAll();
+    }
+
+    @Override
+    public Emp toEdit(int id) {
+        return empMapper.toEdit(id);
+    }
+
+    @Override
+    public int doEdit(Emp emp) {
+        String MD5Password = Md5Encrypt.MD5(emp.getPassword());
+        emp.setPassword(MD5Password);
+        return empMapper.doEdit(emp);
     }
 }

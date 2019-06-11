@@ -14,4 +14,13 @@
       select * from emp
     </select>
 
+    <select id="toEdit" resultType="com.magneto.pojo.Emp">
+      select * from emp where eid = #{id}
+    </select>
+
+
+    <update id="doEdit" parameterType="emp">
+      update emp set name = #{name},password = #{password} ,phone=#{phone} ,aflag=#{aflag} ,salary=#{salary} ,note=#{note} where eid = #{eid}
+    </update>
+
 </mapper>
