@@ -23,8 +23,13 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public List<Emp> selectAll(){
-        return empMapper.selectAll();
+    public List<Emp> selectAllAdmin(){
+        return empMapper.selectAllAdmin();
+    }
+
+    @Override
+    public List<Emp> selectAllEmp(){
+        return empMapper.selectAllEmp();
     }
 
     @Override

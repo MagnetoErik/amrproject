@@ -83,7 +83,7 @@
         created() {
             $.ajax({
                 type: 'post',
-                url: "${pageContext.request.contextPath}/emp/selectAll.action",
+                url: "${pageContext.request.contextPath}/emp/selectAllAdmin.action",
                 success: function (str) {
                     var jsonStr = JSON.parse(str);
                     vm.empList = jsonStr;

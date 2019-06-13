@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2019-06-11 11:28:27
+Date: 2019-06-13 08:15:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -183,12 +183,15 @@ CREATE TABLE `emp` (
 -- ----------------------------
 -- Records of emp
 -- ----------------------------
-INSERT INTO `emp` VALUES ('1', '1', '7', null, 'aa', '4124bc0a9335c27f086f24ba207a4912', '10086', '1000000', null, '1', '男', 'nophoto.png');
-INSERT INTO `emp` VALUES ('1000', '1', null, null, 'Fashion科技', 'f872a18eb88181eb00816510e762fee6', '110', '900', '', '0', '男', 'nophoto.png');
-INSERT INTO `emp` VALUES ('2001', '2', '4', null, '隔壁老王', '5D41402ABC4B2A76B9719D911017C592', '120', '7000', null, '0', '男', 'nophoto.png');
-INSERT INTO `emp` VALUES ('3001', '3', '4', null, '老孙', '5D41402ABC4B2A76B9719D911017C592', '130', '7500', null, '0', '男', 'nophoto.png');
+INSERT INTO `emp` VALUES ('1', '1', '7', null, 'aa', '4124bc0a9335c27f086f24ba207a4912', '10086', '200000', '', '1', '男', 'nophoto.png');
+INSERT INTO `emp` VALUES ('1000', '1', null, null, 'Fashion科技', '75a7fda3fec986daa649ddbee665c542', '110', '1333', '', '1', '男', 'nophoto.png');
+INSERT INTO `emp` VALUES ('2001', '2', '4', null, '隔壁老王', '5D41402ABC4B2A76B9719D911017C592', '120', '7000', null, '1', '男', 'nophoto.png');
+INSERT INTO `emp` VALUES ('3001', '3', '4', null, '老孙', '5D41402ABC4B2A76B9719D911017C592', '130', '7500', null, '1', '男', 'nophoto.png');
 INSERT INTO `emp` VALUES ('4001', '4', '4', null, '老花', '5D41402ABC4B2A76B9719D911017C592', '130', '7500', null, '0', '男', 'nophoto.png');
 INSERT INTO `emp` VALUES ('5001', '5', '4', null, '老田', '5D41402ABC4B2A76B9719D911017C592', '130', '7500', null, '0', '男', 'nophoto.png');
+INSERT INTO `emp` VALUES ('5002', null, null, null, 'qwe', '76d80224611fc919a5d54f0ff9fba446', '123', '123', '', '0', '男', null);
+INSERT INTO `emp` VALUES ('5003', null, null, null, 'qwe', '76d80224611fc919a5d54f0ff9fba446', '123', '123', '', '0', '男', null);
+INSERT INTO `emp` VALUES ('5004', null, '7', null, 'qwe', '76d80224611fc919a5d54f0ff9fba446', '123', '123', 'qweqweqwe', '0', '男', null);
 
 -- ----------------------------
 -- Table structure for groups

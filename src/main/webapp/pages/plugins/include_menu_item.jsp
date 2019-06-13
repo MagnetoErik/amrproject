@@ -32,7 +32,7 @@
 				<ul class="treeview-menu">
 					<li><a href="pages/admin/admin_list.jsp"><i class="fa fa-circle-o"></i>
 							管理员列表</a></li>
-					<li><a href="${pageContext.request.contextPath}/emp/toAdd.action"><i class="fa fa-circle-o"></i>
+					<li><a href="${pageContext.request.contextPath}/emp/toAddAdmin.action"><i class="fa fa-circle-o"></i>
 							增加管理员</a></li>
 				</ul></li>
 			<li class="treeview"><a href="<%=basePath%>pages/index.jsp"> <i class="fa  fa-folder-open"></i>
@@ -41,7 +41,7 @@
 				<ul class="treeview-menu">
 					<li><a href="pages/dept/dept_list.jsp"><i
 							class="fa fa-circle-o"></i> 部门列表</a></li>
-					<li><a href="pages/emp/emp_add.jsp"><i
+					<li><a href="${pageContext.request.contextPath}/emp/toAddEmp.action"><i
 							class="fa fa-circle-o"></i> 增加员工</a></li>
 					<li><a href="pages/emp/emp_list.jsp"><i
 							class="fa fa-circle-o"></i> 员工列表</a></li>

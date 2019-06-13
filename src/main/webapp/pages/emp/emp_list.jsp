@@ -12,9 +12,13 @@
 <base href="<%=basePath%>">
 <jsp:include page="/pages/plugins/include_javascript_head.jsp" />
 <script type="text/javascript" src="js/pages/dept/dept_list.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/vue/Vue.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/vue/axios.js"></script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-	<div class="wrapper">
+	<div class="wrapper" id="content">
 		<!-- 导入头部标题栏内容 -->
 		<jsp:include page="/pages/plugins/include_title_head.jsp" />
 		<!-- 导入左边菜单项 -->
@@ -38,85 +42,14 @@
 									<th>基本工资</th>
 									<th>操作</th>
 								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
-								</tr>
-								<tr>
-									<td>0000</td>
-									<td>诸葛亮</td>
-									<td>110</td>
-									<td>男</td>
-									<td>8900.00</td>
-									<td><a class="btn btn-warning btn-xs" href="pages/emp/emp_edit.jsp">编辑</a></td>
+								<tr v-for="(emp,index) in empList">
+									<td>{{emp.eid}}</td>
+									<td>{{emp.name}}</td>
+									<td>{{emp.phone}}</td>
+									<td>{{emp.sex}}</td>
+									<td>{{emp.salary}}</td>
+									<td>
+                                        <el-button class="btn btn-warning btn-xs" @click="toEdit(emp.eid)">编辑</el-button></td>
 								</tr>
 							</table>
 						</div>
@@ -135,3 +68,26 @@
 	<jsp:include page="/pages/plugins/include_javascript_foot.jsp" />
 </body>
 </html>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:'#content',
+        data:{
+            empList:[]
+        },
+        methods:{
+            toEdit:function (id) {
+                location.href="${pageContext.request.contextPath}/emp/toEdit.action?id="+id;
+            }
+        },
+        created(){
+            $.ajax({
+                type:'post',
+                url:'${pageContext.request.contextPath}/emp/selectAllEmp.action',
+                success:function (res) {
+                    var jsonStr = JSON.parse(res);
+                    vm.empList = jsonStr;
+                }
+            })
+        }
+    })
+</script>

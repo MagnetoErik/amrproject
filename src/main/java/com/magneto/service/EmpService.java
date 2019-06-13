@@ -17,7 +17,13 @@ public interface EmpService {
      * 查询雇员信息列表
      * @return  返回雇员信息列表
      */
-    List<Emp> selectAll();
+    List<Emp> selectAllAdmin();
+
+    /**
+     * 查询雇员信息列表
+     * @return  返回雇员信息列表
+     */
+    List<Emp> selectAllEmp();
 
 
     /**

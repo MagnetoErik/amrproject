@@ -16,10 +16,17 @@ public interface EmpMapper {
 
 
     /**
+     * 查询管理员信息列表
+     * @return  返回管理员信息列表
+     */
+    List<Emp> selectAllAdmin();
+
+
+    /**
      * 查询雇员信息列表
      * @return  返回雇员信息列表
      */
-    List<Emp> selectAll();
+    List<Emp> selectAllEmp();
 
 
     /**
