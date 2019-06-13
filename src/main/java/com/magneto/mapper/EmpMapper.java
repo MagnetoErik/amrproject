@@ -52,10 +52,17 @@ public interface EmpMapper {
     int toAdd();
 
     /**
+     * 添加管理员信息
+     * @param emp 管理员信息
+     * @return 受影响的行数
+     */
+    int doAddAdmin(Emp emp);
+
+    /**
      * 添加雇员信息
      * @param emp 雇员信息
      * @return 受影响的行数
      */
-    int doAdd(Emp emp);
+    int doAddEmp(Emp emp);
 
 }

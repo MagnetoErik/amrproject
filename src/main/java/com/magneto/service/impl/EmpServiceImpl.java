@@ -50,10 +50,18 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public int doAdd(Emp emp) {
+    public int doAddAdmin(Emp emp) {
         String MD5Password = Md5Encrypt.MD5(emp.getPassword());
         emp.setPassword(MD5Password);
-        System.out.println(emp.getEid());
-        return empMapper.doAdd(emp);
+
+        return empMapper.doAddAdmin(emp);
+    }
+
+    @Override
+    public int doAddEmp(Emp emp) {
+        String MD5Password = Md5Encrypt.MD5(emp.getPassword());
+        emp.setPassword(MD5Password);
+
+        return empMapper.doAddEmp(emp);
     }
 }

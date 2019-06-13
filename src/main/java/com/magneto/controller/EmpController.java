@@ -9,8 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -88,7 +92,7 @@ public class EmpController {
                 return "pages/admin/admin_list";
             }
             else{
-                return "pages/emp/emp_edit";
+                return "pages/emp/emp_list";
             }
 
         }
@@ -110,30 +114,46 @@ public class EmpController {
         return "pages/emp/emp_add";
     }
 
-    @RequestMapping("/doAdd")
-    public String doAdd(Emp emp,Model model){
-        int result = empService.doAdd(emp);
+    @RequestMapping("/doAddAdmin")
+    public String doAddAdmin(Emp emp,Model model){
+        int result = empService.doAddAdmin(emp);
         if(result>0){
-            if(emp.getAflag()>0){
-                return "pages/admin/admin_list";
-            }
-            else{
-                return "pages/emp/emp_list";
-            }
-
+            return "pages/admin/admin_list";
         }
         else{
-            if(emp.getAflag()>0){
-                model.addAttribute("maxId",emp.getEid());
-                model.addAttribute("emp1",emp);
-                return "pages/admin/admin_add";
+            model.addAttribute("maxId",emp.getEid());
+            model.addAttribute("newEmp",emp);
+            return "pages/admin/admin_add";
+        }
+    }
+
+    @RequestMapping("/doAddEmp")
+    public String doAddEmp(Emp emp, List<MultipartFile> fileupload, HttpServletRequest request,Model model) throws IOException {
+        System.out.println(emp);
+        if(!fileupload.isEmpty()&&fileupload.size()>0){
+            for (MultipartFile multipartFile : fileupload) {
+                String[] strings = multipartFile.getOriginalFilename().split("\\.");
+                String filename = emp.getName()+"."+strings[1];
+                String dirPath = request.getServletContext().getRealPath("/upload/");
+                File filePath = new File(dirPath);
+                if(!filePath.exists()){
+                    filePath.mkdirs();
+                }
+                emp.setPhoto(filename);
+                //将文件传入指定的路径
+                multipartFile.transferTo(new File(dirPath+filename));
+            }
+            int result = empService.doAddEmp(emp);
+            if(result>0){
+                return "pages/emp/emp_list";
             }
             else{
-                model.addAttribute("maxId",emp.getEid());
-                model.addAttribute("emp1",emp);
+                model.addAttribute("newEmp",emp);
                 return "pages/emp/emp_add";
             }
         }
-
+            return null;
     }
+
+
 }

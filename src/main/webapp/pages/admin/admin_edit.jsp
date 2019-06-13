@@ -31,6 +31,7 @@
 						<!-- /.box-header -->
 						<div class="">
 							<form class="form-horizontal" action="<%=doEditUrl%>" id="myform" method="post">
+								<input type="hidden" id="aflag" name="aflag" value="1">
 								<fieldset>
 									<div class="form-group" id="eidDiv">
 										<!-- 定义表单提示文字 -->

@@ -32,8 +32,12 @@
         select max(eid) from emp
     </select>
 
-    <insert id="doAdd" parameterType="emp">
-      insert into emp(eid,lid,name,password,phone,salary,note) values (#{eid},#{lid},#{name},#{password},#{phone},#{salary},#{note})
+    <insert id="doAddAdmin" parameterType="emp">
+      insert into emp(eid,lid,name,password,phone,salary,note,aflag) values (#{eid},#{lid},#{name},#{password},#{phone},#{salary},#{note},#{aflag} )
+    </insert>
+
+    <insert id="doAddEmp" parameterType="emp">
+      insert into emp(eid,lid,name,password,phone,salary,note,aflag,photo) values (#{eid},#{lid},#{name},#{password},#{phone},#{salary},#{note},#{aflag},#{photo} )
     </insert>
 
 </mapper>

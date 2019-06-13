@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	String editUrl = basePath + "" ;
+	String editUrl = basePath + "emp/doEdit.action" ;
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -37,7 +37,7 @@
 										<label class="col-md-3 control-label" for="eid">雇员编号：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="eid" name="eid" class="form-control"
+											<input type="text" id="eid" name="eid" readonly="readonly" value="${emp.eid}" class="form-control"
 												placeholder="请输入雇员编号">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -48,7 +48,7 @@
 										<label class="col-md-3 control-label" for="name">雇员姓名：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="name" name="name" class="form-control"
+											<input type="text" id="name" value="${emp.name}" name="name" class="form-control"
 												placeholder="请输入雇员姓名">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -72,7 +72,7 @@
 										<!-- 定义表单提示文字 -->
 										<label class="col-md-3 control-label" for="dept.did">所属部门：</label>
 										<div class="col-md-5">
-											<select id="dept.did" name="dept.did" class="form-control">
+											<select id="did" name="did" class="form-control">
 												<option value="2">人事部</option>
 												<option value="3">行政部</option>
 												<option value="4" selected>市场部</option>
@@ -87,7 +87,7 @@
 										<label class="col-md-3 control-label" for="password">登录密码：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="password" id="password" name="password" class="form-control"
+											<input type="password" id="password" name="password" value="${emp.password}" class="form-control"
 												placeholder="请输入登录密码">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -98,7 +98,7 @@
 										<label class="col-md-3 control-label" for="phone">联系电话：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="phone" name="phone" class="form-control"
+											<input type="text" id="phone" name="phone" value="${emp.phone}" class="form-control"
 												placeholder="请输入联系电话">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -108,7 +108,7 @@
 										<!-- 定义表单提示文字 -->
 										<label class="col-md-3 control-label" for="level.lid">员工级别：</label>
 										<div class="col-md-5">
-											<select id="level.lid" name="level.lid" class="form-control">
+											<select id="lid" name="lid" class="form-control">
 												<option value="1">实习生</option>
 												<option value="2" selected>普通员工</option>
 												<option value="3">部门主管</option>
@@ -126,7 +126,7 @@
 										<label class="col-md-3 control-label" for="salary">基本工资：</label>
 										<div class="col-md-5">
 											<!-- 定义表单输入组件 -->
-											<input type="text" id="salary" name="salary" class="form-control"
+											<input type="text" id="salary" name="salary" value="${emp.salary}" class="form-control"
 												placeholder="请输入基本工资">
 										</div>
 										<!-- 定义表单错误提示显示元素 -->
@@ -156,7 +156,7 @@
 									</div>
 									<div class="form-group">
 										<div class="col-md-5 col-md-offset-3">
-											<button type="submit" class="btn btn-primary">增加</button>
+											<button type="submit" class="btn btn-primary">修改</button>
 											<button type="reset" class="btn btn-warning">重置</button>
 										</div>
 									</div>
