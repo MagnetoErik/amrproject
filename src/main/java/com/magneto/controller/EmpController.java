@@ -78,8 +78,6 @@ public class EmpController {
         map.put("empList",empList);
         map.put("pageInfo",pageInfo);
         //将查询到的json转换成json字符串
-        System.out.println(empList);
-        System.out.println(pageInfo);
         return JSON.toJSONString(map);
     }
 
@@ -141,7 +139,6 @@ public class EmpController {
 
     @RequestMapping("/doAddEmp")
     public String doAddEmp(Emp emp, List<MultipartFile> fileupload, HttpServletRequest request,Model model) throws IOException {
-        System.out.println(emp);
         if(!fileupload.isEmpty()&&fileupload.size()>0){
             for (MultipartFile multipartFile : fileupload) {
                 String[] strings = multipartFile.getOriginalFilename().split("\\.");
@@ -166,6 +163,7 @@ public class EmpController {
         }
             return null;
     }
+
 
 
 }

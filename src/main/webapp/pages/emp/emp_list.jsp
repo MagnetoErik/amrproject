@@ -49,15 +49,15 @@
 									<td>{{emp.sex}}</td>
 									<td>{{emp.salary}}</td>
 									<td>
-                                        <el-button class="btn btn-warning btn-xs" @click="toEdit(emp.eid)">编辑</el-button></td>
+                                        <el-button class="btn btn-warning btn-xs" @click="toEdit(emp.eid,pageInfo.pageNum)">编辑</el-button></td>
 								</tr>
 							</table>
 							<div class="col-md-offset-4 col-md-4">
-							<el-button class="btn btn-default">首页</el-button>
-							<el-button class="btn btn-default">上一页</el-button>
+							<el-button class="btn btn-default" @click="top(pageInfo.pageNum)" name="top">首页</el-button>
+							<el-button class="btn btn-default" @click="last(pageInfo.pageNum)" name="last">上一页</el-button>
 							{{pageInfo.pageNum}}/{{pageInfo.pages}}
-							<el-button class="btn btn-default">下一页</el-button>
-							<el-button class="btn btn-default">末页</el-button>
+							<el-button class="btn btn-default" @click="next(pageInfo.pageNum)" name="next">下一页</el-button>
+							<el-button class="btn btn-default" @click="final(pageInfo.pageNum,pageInfo.pages)" name="final">末页</el-button>
 							</div>
 						</div>
 						<!-- /.box-body -->
@@ -80,23 +80,77 @@
         el:'#content',
         data:{
             empList:[],
-			pageInfo:[]
+			pageInfo:[],
         },
         methods:{
-            toEdit:function (id) {
-                location.href="${pageContext.request.contextPath}/emp/toEdit.action?id="+id;
+            toEdit:function (id,pageNum) {
+                location.href="${pageContext.request.contextPath}/emp/toEdit.action?id="+id+"&pageNum="+pageNum;
+            },
+			top:function (pageNum) {
+                if(pageNum!=1){
+                    $.ajax({
+                        type:'post',
+                        url:'${pageContext.request.contextPath}/emp/selectAllEmp.action',
+                        data:{pageNum:1},
+                        success:function (res) {
+                            var jsonStr = JSON.parse(res);
+                            vm.empList = jsonStr.empList;
+                            vm.pageInfo = jsonStr.pageInfo;
+                        }
+                    })
+                }
+            },
+            last:function (pageNum) {
+                if(pageNum!=1){
+                    $.ajax({
+                        type:'post',
+                        url:'${pageContext.request.contextPath}/emp/selectAllEmp.action',
+                        data:{pageNum:(pageNum-1)},
+                        success:function (res) {
+                            var jsonStr = JSON.parse(res);
+                            vm.empList = jsonStr.empList;
+                            vm.pageInfo = jsonStr.pageInfo;
+
+                        }
+                    })
+				}
+            },
+			next:function (pageNum) {
+                $.ajax({
+                    type:'post',
+                    url:'${pageContext.request.contextPath}/emp/selectAllEmp.action',
+                    data:{pageNum:(pageNum+1)},
+                    success:function (res) {
+                        var jsonStr = JSON.parse(res);
+                        vm.empList = jsonStr.empList;
+                        vm.pageInfo = jsonStr.pageInfo;
+                    }
+                })
+            },
+			final:function (pageNum,pages) {
+                if(pageNum!=pages){
+                    $.ajax({
+                        type:'post',
+                        url:'${pageContext.request.contextPath}/emp/selectAllEmp.action',
+                        data:{pageNum:pages},
+                        success:function (res) {
+                            var jsonStr = JSON.parse(res);
+                            vm.empList = jsonStr.empList;
+                            vm.pageInfo = jsonStr.pageInfo;
+                        }
+                    })
+				}
             }
         },
         created(){
             $.ajax({
                 type:'post',
-                url:'${pageContext.request.contextPath}/emp/selectAllEmp.action?pageNum='+1,
+                url:'${pageContext.request.contextPath}/emp/selectAllEmp.action',
+				data:{pageNum:1},
                 success:function (res) {
                     var jsonStr = JSON.parse(res);
-                    console.log(res);
                     vm.empList = jsonStr.empList;
                     vm.pageInfo = jsonStr.pageInfo;
-
                 }
             })
         }
