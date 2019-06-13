@@ -2,6 +2,8 @@ package com.magneto.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.magneto.pojo.Emp;
 import com.magneto.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/emp")
@@ -64,11 +68,19 @@ public class EmpController {
      */
     @RequestMapping(value = "/selectAllEmp", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String selectAllEmp(){
+    public String selectAllEmp(Integer pageNum){
+        PageHelper.startPage(pageNum,14);
         //雇员信息列表
         List<Emp> empList = empService.selectAllEmp();
+        PageInfo<Emp> pageInfo = new PageInfo<Emp>(empList);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("empList",empList);
+        map.put("pageInfo",pageInfo);
         //将查询到的json转换成json字符串
-        return JSON.toJSONString(empList);
+        System.out.println(empList);
+        System.out.println(pageInfo);
+        return JSON.toJSONString(map);
     }
 
 

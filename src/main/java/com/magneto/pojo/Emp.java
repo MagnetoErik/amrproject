@@ -21,4 +21,21 @@ public class Emp {
     private String sex;//性别
     private String photo;//雇员照片
 
+    public Emp() {
+    }
+
+    public Emp(int eid, int did, int lid, int heid, String name, String password, String phone, double salary, String note, int aflag, String sex, String photo) {
+        this.eid = eid;
+        this.did = did;
+        this.lid = lid;
+        this.heid = heid;
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+        this.salary = salary;
+        this.note = note;
+        this.aflag = aflag;
+        this.sex = sex;
+        this.photo = photo;
+    }
 }

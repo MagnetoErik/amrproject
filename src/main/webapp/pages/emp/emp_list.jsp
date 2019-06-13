@@ -52,6 +52,13 @@
                                         <el-button class="btn btn-warning btn-xs" @click="toEdit(emp.eid)">编辑</el-button></td>
 								</tr>
 							</table>
+							<div class="col-md-offset-4 col-md-4">
+							<el-button class="btn btn-default">首页</el-button>
+							<el-button class="btn btn-default">上一页</el-button>
+							{{pageInfo.pageNum}}/{{pageInfo.pages}}
+							<el-button class="btn btn-default">下一页</el-button>
+							<el-button class="btn btn-default">末页</el-button>
+							</div>
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -72,7 +79,8 @@
     var vm = new Vue({
         el:'#content',
         data:{
-            empList:[]
+            empList:[],
+			pageInfo:[]
         },
         methods:{
             toEdit:function (id) {
@@ -82,10 +90,13 @@
         created(){
             $.ajax({
                 type:'post',
-                url:'${pageContext.request.contextPath}/emp/selectAllEmp.action',
+                url:'${pageContext.request.contextPath}/emp/selectAllEmp.action?pageNum='+1,
                 success:function (res) {
                     var jsonStr = JSON.parse(res);
-                    vm.empList = jsonStr;
+                    console.log(res);
+                    vm.empList = jsonStr.empList;
+                    vm.pageInfo = jsonStr.pageInfo;
+
                 }
             })
         }
